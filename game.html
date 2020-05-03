@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game</title>
+        <style>
+            #canvasDiv {
+                text-align: center;
+            }
+        </style>
+        <script>
+            // variables
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            var playerY = 30;
+            
+            window.addEventListener("load", init, false);
+
+            function init() {
+                ctx.fillStyle = "#black";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                var fps = 30;
+                setInterval(updateFunction(400), 1000/ fps);
+            }
+
+            function updateFunction() {
+                playerUpdate();
+            }
+
+            function playerUpdate(playerX) {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(playerX, playerY, 50, 50);
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="canvasDiv">
+            <canvas id="myCanvas" width="800" height="600"></canvas>
+        </div>
+    </body>
+</html>
