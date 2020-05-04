@@ -13,6 +13,9 @@
             var ctx;
 
             var score = 0;
+            var lives = 3;
+            var gameover = false;
+
             var playerY = 30;
             var playerX = 200;
             const PLAYER_WIDTH = 50;
@@ -88,13 +91,23 @@
 
             function updateFunction() {
                 //console.log("Update");
-                ctx.fillStyle = "black";
+                if (gameover)
+                {
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "white";
+                    ctx.fillText("Game Over!", canvas.width/2 - 100, 100);
+                    ctx.fillText("Score: " + score, canvas.width/2 - 100, 300);
+                    return;
+                }
+                ctx.fillStyle = 'black';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = 'white';
                 ctx.fillRect(playerX, playerY, PLAYER_WIDTH, PLAYER_WIDTH);
                 
                 ctx.font = "20pt Arial";
-                ctx.fillText("Score: " + score, canvas.width - 200, 50);
+                ctx.fillText("Score: " + score, canvas.width - 150, 50);
+                ctx.fillText("Lives: " + lives, 50, 50);
 
                 for (var i = 0; i < enemies.length; i++)
                 {
@@ -108,6 +121,15 @@
                     ctx.fillStyle = 'white';
                     ctx.fillRect(enemies[i].enemyX, enemies[i].enemyY, ENEMY_WIDTH, ENEMY_WIDTH);
                     
+                    if ((playerY >= enemies[i].enemyY && playerY <= enemies[i].enemyY + PLAYER_WIDTH) &&
+                            (playerX >= enemies[i].enemyX && playerX <= enemies[i].enemyX + PLAYER_WIDTH))
+                    {
+                        lives--;
+                        enemies[i].enemyY = canvas.height + 5;
+                        if (lives <= 0)
+                            gameover = true;
+                    }
+
                     enemies[i].enemyY += 5;                       
                 }
 
