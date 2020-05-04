@@ -45,12 +45,15 @@
             }
             
             function mouseClickFire(evt) {
-                // console.log("pew");
-                //blast = true;
+                if (gameover)
+                {
+                    lives = 3;
+                    gameover = false; 
+                    score = 0;
+                    return;
+                }
                 let blast = new Blast(playerX + PLAYER_WIDTH/2, playerY - PLAYER_WIDTH/2);
                 blastList.push(blast);
-                //blastX = playerX + PLAYER_WIDTH/2;
-                //blastY = playerY - PLAYER_WIDTH/2;
             }
 
             window.addEventListener("load", init, false);
@@ -121,9 +124,10 @@
                     ctx.fillStyle = 'white';
                     ctx.fillRect(enemies[i].enemyX, enemies[i].enemyY, ENEMY_WIDTH, ENEMY_WIDTH);
                     
-                    if ((playerY >= enemies[i].enemyY && playerY <= enemies[i].enemyY + PLAYER_WIDTH) &&
+                    if ((enemies[i].enemyY <= playerY + PLAYER_WIDTH/2 && enemies[i].enemyY  >= playerY - PLAYER_WIDTH) &&
                             (playerX >= enemies[i].enemyX && playerX <= enemies[i].enemyX + PLAYER_WIDTH))
                     {
+                        console.log("Hit");
                         lives--;
                         enemies[i].enemyY = canvas.height + 5;
                         if (lives <= 0)
