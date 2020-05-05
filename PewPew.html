@@ -20,6 +20,8 @@
             var playerX = 200;
             const PLAYER_WIDTH = 50;
             const ENEMY_WIDTH = 50;
+            var enemySpeed = 5;
+            var frequency = 1;
             
             var enemies = [];
             var blastList = [];
@@ -45,8 +47,11 @@
             }
             
             function mouseClickFire(evt) {
+                //console.log(playerX + " " + playerY + " "  + enemies[0].enemyX + " " + enemies[0].enemyY);
                 if (gameover)
                 {
+                    enemySpeed = 5;
+                    frequency = 1;
                     lives = 3;
                     gameover = false; 
                     score = 0;
@@ -75,15 +80,20 @@
                 var fps = 30;
                 setInterval(function() {
                     updateFunction();
-                }, 1000/ fps);
-
-                var frequency = 2000;
-                var enemySpeed = 10;
+                }, 1000 / fps);
+                
                 setInterval(function() {
+                    // console.log(frequency + " " + enemySpeed);
+                    if (gameover)
+                        return;
                     var enemy = new Enemy(Math.random() * Math.floor(canvas.width - (ENEMY_WIDTH*2)), 0);
                     enemies.push(enemy);
+                    if (enemySpeed < 10)
+                        enemySpeed += 0.5;
+                    if (frequency < 2)
+                        frequency += 0.05;
                     // console.log("push");
-                }, frequency);
+                }, 1000 / frequency);
 
                 canvas.addEventListener('mousemove', function(evt) {
                     var mousePos = calculateMousePos(evt);
@@ -124,17 +134,17 @@
                     ctx.fillStyle = 'white';
                     ctx.fillRect(enemies[i].enemyX, enemies[i].enemyY, ENEMY_WIDTH, ENEMY_WIDTH);
                     
-                    if ((enemies[i].enemyY <= playerY + PLAYER_WIDTH/2 && enemies[i].enemyY  >= playerY - PLAYER_WIDTH) &&
-                            (playerX >= enemies[i].enemyX && playerX <= enemies[i].enemyX + PLAYER_WIDTH))
+                    if ((enemies[i].enemyY + ENEMY_WIDTH > playerY && enemies[i].enemyY < playerY + PLAYER_WIDTH) &&
+                            (enemies[i].enemyX > playerX - PLAYER_WIDTH && enemies[i].enemyX < playerX + PLAYER_WIDTH))
                     {
-                        console.log("Hit");
+                        // console.log("Hit");
                         lives--;
                         enemies[i].enemyY = canvas.height + 5;
                         if (lives <= 0)
                             gameover = true;
                     }
 
-                    enemies[i].enemyY += 5;                       
+                    enemies[i].enemyY += enemySpeed;                       
                 }
 
 
