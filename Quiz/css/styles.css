@@ -1,0 +1,36 @@
+body {
+    background-color: grey;
+}
+
+/*ID's*/
+#topbar {
+    height: 30px;
+    padding-bottom: 10 px;
+    background-color: red;
+}
+#searchbox {
+    height: 100px;
+    padding-bottom: 10 px;
+    background-color: aqua;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#searchbar {
+    padding: 5px;
+}
+#quizcontainer {
+    height: auto;
+    margin: 50px 50px 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+/*Classes*/
+.quiz {
+    height: 100px;
+    background-color: aquamarine;
+    width: 80%;
+    margin: 10px auto 10px;
+}
