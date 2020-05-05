@@ -65,6 +65,7 @@
                     }
                 }
                 update();
+                addWall();
 
                 var fps = 30;
                 
@@ -72,6 +73,9 @@
                     // game controller 
                     update();
                     player.drawPlayer();
+
+                    if (gameover)
+                        return;
                     
                     for (var i = 0; i < wallList.length; i++)
                     {
@@ -85,20 +89,29 @@
                             wallList[0].x <= player.x + PLAYER_WIDTH) {
                                 if (player.y >= wallList[0].safeTop && player.y + PLAYER_WIDTH <= wallList[0].safeBottom)
                                     score++;
+                                else
+                                    gameover = true;
                             }
                             
                     }, 1000/fps);
+                
+                if (!gameover)
+                    setInterval(addWall, WALL_SPAWN);
 
-                setInterval(function() {
-                    let wall = new Wall();
-                    wallList.push(wall);
-                }, WALL_SPAWN);
-
+                // Mouse event listeners
                 canvas.addEventListener('mousemove', function(evt) {
                     var mousePos = calculateMousePos(evt);
                     player.y = mousePos.y - PLAYER_WIDTH/2;
                 });
+                canvas.addEventListener('mousedown', function(evt) {
+                    if (gameover)
+                    {
+                        score = 0;
+                        gameover = false;
+                    }
+                });
             }
+
             function update() {
                 drawRect(0, 0, canvas.width, canvas.height, 'black');
                 ctx.fillStyle = 'white';
@@ -109,6 +122,11 @@
             function drawRect(x, y, width, height, color) {
                 ctx.fillStyle = color;
                 ctx.fillRect(x, y, width, height);
+            }
+
+            function addWall() {
+                let wall = new Wall();
+                wallList.push(wall);
             }
             
 
