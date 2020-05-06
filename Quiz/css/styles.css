@@ -6,7 +6,17 @@ body {
 #topbar {
     height: 30px;
     padding-bottom: 10 px;
-    background-color: red;
+    background-color: #222222;
+}
+#topbar a {
+    margin-left: 45%;
+    color: white;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 17px;
 }
 #searchbox {
     height: 100px;
@@ -20,7 +30,7 @@ body {
 #searchbar {
     padding: 5px;
 }
-#quizcontainer {
+#quiz-section {
     height: auto;
     margin: 50px 50px 30px;
     background-color: white;
@@ -28,9 +38,21 @@ body {
     flex-direction: column;
 }
 /*Classes*/
-.quiz {
+.quiz-container {
     height: 100px;
     background-color: aquamarine;
     width: 80%;
     margin: 10px auto 10px;
+    display: flex;
+}
+.quiz-image {
+    background-color: dodgerblue;
+    margin: 5px;
+    padding: 20px;
+    width: 10%;
+}
+.quiz-text {
+    width: 100%;
+    margin: 5px;
+    background-color: chocolate;
 }
