@@ -11,23 +11,22 @@
             <a href="../quiz.html">Quiz</a>
         </div>    
         <div id="quiz">
-            <form id="quiz" action="action_page.php">
+            <form id="quiz" action="action_page.php" name="quiz" method="post">
                 <fieldset style="display: flex;">
                     <div>
-                        <img id="quiz-image" src="../img/pokemon/pideler.png" alt="Who's that pokemon?" class="quiz-image">
+                        <img id="quiz-image" src="../img/pokemon/image1.png" alt="Who's that pokemon?" class="quiz-image">
                     </div>
-                    <div class="quiz-question">
+                    <div id="quiz-question" class="quiz-question">
                         <h2>Who's that Pokemon!?</h2>
-                        <input type="radio" id="1" name="q1" value="true">
-                        <label for="1">Pideler</label> <br>
-                        <input type="radio" id="2" name="q1" value="false">
-                        <label for="2">Bulbeler</label> <br>
-                        <input type="radio" id="3" name="q1" value="false">
-                        <label for="3">Caterem</label> <br> 
+                        <input type="radio" id="a" name="question1" value="a">
+                        <label id="labela" for="a">Pideler</label> <br>
+                        <input type="radio" id="b" name="question1" value="b">
+                        <label id="labelb" for="b">Bulbeler</label> <br>
+                        <input type="radio" id="c" name="question1" value="c">
+                        <label id="labelc" for="c">Caterem</label> <br> 
                     </div>
                     <br>
                     <input id="next" class="quiz-button" type="button" name="next" value="Next">
-            
                 </fieldset>
     <!--            <fieldset>
                     <legend>Question 2</legend>
