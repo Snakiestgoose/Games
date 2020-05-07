@@ -1,10 +1,32 @@
+/*Text*/
+h2 {
+    font-size: large;
+    font-weight: bold;
+    padding: 5px;
+}
+p {
+    font-size: medium;
+    padding: 5px;
+}
+/*Form*/
+fieldset {
+    background-color: blanchedalmond;
+    border: #222222;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
 body {
     background-color: grey;
+}
+img {
+    height: 100%;
 }
 
 /*ID's*/
 #topbar {
-    height: 30px;
+    height: 4vh;
     padding-bottom: 10 px;
     background-color: #222222;
 }
@@ -45,14 +67,48 @@ body {
     margin: 10px auto 10px;
     display: flex;
 }
-.quiz-image {
+.quiz-preview {
     background-color: dodgerblue;
     margin: 5px;
-    padding: 20px;
     width: 10%;
 }
 .quiz-text {
-    width: 100%;
+    width: 70%;
     margin: 5px;
+    margin-left: 15%;
     background-color: chocolate;
+}
+.footer {
+    height: 5vh;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    background-color: cadetblue;
+    display: flex;
+}
+.footer a {
+    height: 75%;
+    margin: 5px;
+    margin-bottom: auto;
+    margin-top: auto; 
+    padding: 5px;
+}
+.quiz-image {
+    width: 100%;
+    max-width: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;   
+}
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+}
+.quiz-question {
+    margin-left: 50px;
+}
+.quiz-button {
+    padding: 10px;
+    background-color: lightgreen;
+    margin-left: 50%;
 }
