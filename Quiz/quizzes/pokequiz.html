@@ -5,6 +5,39 @@
         <link rel="stylesheet" type="text/css" href="../css/reset.css">
         <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <script src="../js/quiz.js"></script>
+        <script type="text/javascript">
+            var newQuestions = [
+                [
+                    question = "Who's that pokemon!?",
+                    answers = [
+                        a = "Pideler",
+                        b = "Bulbeler",
+                        c = "Caterem"
+                    ],
+                    correctAnswer = "a"
+                ],
+                [
+                    question = "Who's that pokemon!?",
+                    answers = [
+                        a = "Caterpuff",
+                        b = "Catertata",
+                        c = "Caterow"
+                    ],
+                    correctAnswer = "c"
+                ],
+                [
+                    question = "Who's that pokemon!?",
+                    answers = [
+                        a = "Snortle",
+                        b = "Snorb",
+                        c = "Snoreotto"
+                    ],
+                    correctAnswer = "b"
+                ]
+            ];
+            var questionSet = "pokemon";
+            populateData(newQuestions, questionSet);
+        </script>
     </head>
     <body>
         <div id="topbar">
@@ -17,7 +50,7 @@
                         <img id="quiz-image" src="../img/pokemon/image1.png" alt="Who's that pokemon?" class="quiz-image">
                     </div>
                     <div id="quiz-question" class="quiz-question">
-                        <h2>Who's that Pokemon!?</h2>
+                        <h2 id="question-text">Who's that Pokemon!?</h2>
                         <input type="radio" id="a" name="question1" value="a">
                         <label id="labela" for="a">Pideler</label> <br>
                         <input type="radio" id="b" name="question1" value="b">
@@ -28,26 +61,6 @@
                     <br>
                     <input id="next" class="quiz-button" type="button" name="next" value="Next">
                 </fieldset>
-    <!--            <fieldset>
-                    <legend>Question 2</legend>
-                    <h2>Who's that Pokemon!?</h2>
-                    <input type="radio" id="1" name="q2" value="false">
-                    <label for="1">Caterpuff</label> <br>
-                    <input type="radio" id="2" name="q2" value="false">
-                    <label for="2">Catertata</label> <br>
-                    <input type="radio" id="3" name="q2" value="true">
-                    <label for="3">Caterow</label> <br>   
-                </fieldset>
-                <fieldset>
-                    <legend>Question 3</legend>
-                    <h2>Who's that Pokemon!?</h2>
-                    <input type="radio" id="1" name="q3" value="false">
-                    <label for="1">Snortle</label> <br>
-                    <input type="radio" id="2" name="q3" value="true">
-                    <label for="2">Snorb</label> <br>
-                    <input type="radio" id="3" name="q3" value="false">
-                    <label for="3">Snoreotto</label> <br>   
-                </fieldset>-->
             </form>
         </div>
         <div class="footer">

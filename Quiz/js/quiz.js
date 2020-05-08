@@ -1,68 +1,24 @@
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submitButton');
-const myQuestions = [
-    [
-        question = "Who's that pokemon!?",
-        answers = [
-            a = "Pideler",
-            b = "Bulbeler",
-            c = "Caterem"
-        ],
-        correctAnswer = "a"
-    ],
-    [
-        question = "Who's that pokemon!?",
-        answers = [
-            a = "Caterpuff",
-            b = "Catertata",
-            c = "Caterow"
-        ],
-        correctAnswer = "c"
-    ],
-    [
-        question = "Who's that pokemon!?",
-        answers = [
-            a = "Snortle",
-            b = "Snorb",
-            c = "Snoreotto"
-        ],
-        correctAnswer = "b"
-    ]
-];
+var myQuestions;
 var questionNumber = 0;
-var questionSet = "pokemon";
+var questionSet;
 var results = 0;
 var image_src;
 var image;
+
+function populateData(newQuestions, newQuestionSet) {
+    myQuestions = newQuestions;
+    questionSet = newQuestionSet;
+}
+
+
 
 function buildQuiz() {
     const quizContainer = document.getElementById('quiz');
 
     nextButton = document.getElementById('next');
     nextButton.addEventListener('click', nextQuestion);
-
-    /*
-        console.log(myQuestions);
-        console.log(myQuestions[0][2]);
-        console.log(myQuestions[0][1][0]);
-        console.log(myQuestions[1][1]);
-
-    for (var i = 0; i < myQuestions.length; i++) {
-        var title = document.createElement("h2");
-        var title_text = document.createTextNode(myQuestions[i][0]);
-        title.appendChild(title_text);
-        quizContainer.appendChild(title);
-
-        for (var j = 0; j < myQuestions[i][1].length; i++) {
-            var input = document.createElement("p");
-            var input_text = document.createTextNode(myQuestions[i][j]);
-            input.appendChild(input_text);
-            title.appendChild(input);
-        }
-
-        console.log(myQuestions[i]);
-    }
-    */
 }
 
 function nextQuestion() {
@@ -91,6 +47,10 @@ function nextQuestion() {
     image = document.getElementById('quiz-image');
     image.src = image_src;
 
+    var questionText = document.getElementById('question-text');
+    questionText.textContent = myQuestions[questionNumber][0];
+    
+
     var label = document.getElementById('labela');
     label.textContent = myQuestions[questionNumber][1][0];
     label = document.getElementById('labelb');
@@ -102,7 +62,7 @@ function nextQuestion() {
 }
     
 function showResults() {
-    image_src = "../img/" + questionSet + "/results.png";
+    image_src = "../img/" + questionSet + "/results" + results + ".png";
     image.src = image_src;
     if (results == 0)
         console.log('You suck');
@@ -116,6 +76,10 @@ function showResults() {
     var button = document.getElementById('next');
     button.parentNode.removeChild(button);
 
+    p = document.createElement('p');
+    p_text = document.createTextNode('You scored ' + results + ' out of ' + myQuestions.length + '!');
+    p.appendChild(p_text);
+    resultDiv.appendChild(p);
 }
     
     
