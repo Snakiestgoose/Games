@@ -12,7 +12,7 @@
                     answers = [
                         a = "Pideler",
                         b = "Bulbeler",
-                        c = "Caterem"
+                        c = "Flareler"
                     ],
                     correctAnswer = "a"
                 ],
@@ -36,7 +36,7 @@
                 ]
             ];
             var questionSet = "pokemon";
-            populateData(newQuestions, questionSet);
+            populateData(newQuestions, questionSet, 0, 0);
         </script>
     </head>
     <body>
@@ -47,7 +47,7 @@
             <form id="quiz" action="action_page.php" name="quiz" method="post">
                 <fieldset style="display: flex;">
                     <div>
-                        <img id="quiz-image" src="../img/pokemon/image1.png" alt="Who's that pokemon?" class="quiz-image">
+                        <img id="quiz-image" src="" alt="Who's that pokemon?" class="quiz-image">
                     </div>
                     <div id="quiz-question" class="quiz-question">
                         <h2 id="question-text">Who's that Pokemon!?</h2>

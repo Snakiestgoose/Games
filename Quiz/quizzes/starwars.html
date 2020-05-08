@@ -36,7 +36,7 @@
                 ]
             ];
             var questionSet = "starwars";
-            populateData(newQuestions, questionSet);
+            populateData(newQuestions, questionSet, 0, 0);
         </script>
     </head>
     <body>
@@ -47,16 +47,16 @@
             <form id="quiz" action="action_page.php" name="quiz" method="post">
                 <fieldset style="display: flex;">
                     <div>
-                        <img id="quiz-image" src="../img/starwars/image1.png" alt="George Lucas" class="quiz-image">
+                        <img id="quiz-image" src="" alt="" class="quiz-image">
                     </div>
                     <div id="quiz-question" class="quiz-question">
-                        <h2 id="question-text">Which space opera comic strip originally inspired George Lucas to write the first Star Wars film?</h2>
+                        <h2 id="question-text">Question</h2>
                         <input type="radio" id="a" name="question1" value="a">
-                        <label id="labela" for="a">Flash Gordan</label> <br>
+                        <label id="labela" for="a">a</label> <br>
                         <input type="radio" id="b" name="question1" value="b">
-                        <label id="labelb" for="b">Valerian and Laureline</label> <br>
+                        <label id="labelb" for="b">b</label> <br>
                         <input type="radio" id="c" name="question1" value="c">
-                        <label id="labelc" for="c">Saga</label> <br> 
+                        <label id="labelc" for="c">c</label> <br> 
                     </div>
                     <br>
                     <input id="next" class="quiz-button" type="button" name="next" value="Next">

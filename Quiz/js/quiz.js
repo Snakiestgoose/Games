@@ -6,17 +6,27 @@ var questionSet;
 var results = 0;
 var image_src;
 var image;
+var counter;
+var quizType;
+var resultOptions;
+var resultOptCounter = [];
 
-function populateData(newQuestions, newQuestionSet) {
+function populateData(newQuestions, newQuestionSet, flag, newResultOptions) {
     myQuestions = newQuestions;
     questionSet = newQuestionSet;
+    quizType = flag;
+    resultOptions = newResultOptions; 
+    //index will represent the character and be set to 0
+    
+    for (var i = 0; i < resultOptions.length; i++) {
+        resultOptCounter[i] = 0;
+    }
 }
-
-
 
 function buildQuiz() {
     const quizContainer = document.getElementById('quiz');
 
+    changeDisplay();
     nextButton = document.getElementById('next');
     nextButton.addEventListener('click', nextQuestion);
 }
@@ -25,13 +35,24 @@ function nextQuestion() {
 
     if (questionNumber > myQuestions.length -1)
         return;
-
-    console.log("Next Question");        
+      
     var radio_buttons = document.getElementsByName('question1');
     for (var i = 0; i < radio_buttons.length; i++) {
-        console.log(radio_buttons[i].checked);
-        if (radio_buttons[i].value == myQuestions[questionNumber][2] && radio_buttons[i].checked)
-            results++;
+        if (quizType == 0) {
+            if (radio_buttons[i].value == myQuestions[questionNumber][2] 
+            && radio_buttons[i].checked) {
+                results++;   
+            }
+        }
+        else if (quizType == 1) {
+            if (radio_buttons[i].checked) {
+                // get the value array from myQuestions and add to the counter array
+                var array = myQuestions[questionNumber][2][i]
+                for (var j = 0; j < array.length; j++) {
+                resultOptCounter[array[j]]++;
+                }
+            }
+        }
         radio_buttons[i].checked = false;
     }
 
@@ -42,6 +63,12 @@ function nextQuestion() {
         return;
     }
 
+    changeDisplay();
+    
+
+}
+
+function changeDisplay() {
     image_src = "../img/" + questionSet + "/image" + (questionNumber + 1) + ".png";
 
     image = document.getElementById('quiz-image');
@@ -57,18 +84,10 @@ function nextQuestion() {
     label.textContent = myQuestions[questionNumber][1][1];
     label = document.getElementById('labelc');
     label.textContent = myQuestions[questionNumber][1][2];
-    
-
 }
     
 function showResults() {
-    image_src = "../img/" + questionSet + "/results" + results + ".png";
-    image.src = image_src;
-    if (results == 0)
-        console.log('You suck');
-    else {
-        console.log("You got " + results + " out of " + myQuestions.length + " correct!")
-    }
+
     var resultDiv = document.getElementById('quiz-question');
     while (resultDiv.hasChildNodes()) {
         resultDiv.removeChild(resultDiv.firstChild);
@@ -76,29 +95,34 @@ function showResults() {
     var button = document.getElementById('next');
     button.parentNode.removeChild(button);
 
-    p = document.createElement('p');
-    p_text = document.createTextNode('You scored ' + results + ' out of ' + myQuestions.length + '!');
-    p.appendChild(p_text);
-    resultDiv.appendChild(p);
-}
-    
-    
-/*    const output = [];
+    if (quizType == 0) {
+        image_src = "../img/" + questionSet + "/results" + results + ".png";
+        image.src = image_src;
 
-    myQuestions.forEach(currentQuestion, questionNumber) => {
-        const answers = [];
-        for (letter in currentQuestion.answers) {
-            answers.push(
-                <label>
-                    <input type="radio" name="questions${questionNumber}" value="${letter}"></input>
-                    ${letter} :
-                    ${currentQuestion.answers[letter]}
-                </label>
-            )
-        }
+        p = document.createElement('p');
+        p_text = document.createTextNode('You scored ' + results + ' out of ' + myQuestions.length + '!');
+        p.appendChild(p_text);
+        resultDiv.appendChild(p);
     }
-    quizContainer.innerHTML = output.join('');
-}*/
+    else if (quizType == 1) {
+        var max = 0;
+        for (var i = 0; i < resultOptCounter.length; i++) {
+            if (resultOptCounter[i] > max)
+                max = i;
+        }
+        image_src = "../img/" + questionSet + "/results" + max + ".png";
+        image.src = image_src;
 
-//submitButton.addEventListener('click', showResults);
+        p = document.createElement('p');
+        p_text = document.createTextNode('You got ' + resultOptions[max] + '!');
+        p.appendChild(p_text);
+        resultDiv.appendChild(p);
+    }
+    
+    
+
+    
+}
+
+
 window.addEventListener('load', buildQuiz);
