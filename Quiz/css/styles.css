@@ -33,18 +33,21 @@ img {
 #topbar {
     width: 100%;
     height: 4vh;
+    max-height: 4vh;
     padding-bottom: 10 px;
     background-color: #222222;
 }
 #topbar a {
-    margin-left: 45%;
-    color: white;
+    margin-top: 5px;
     float: left;
+    background-color: #dddddd;
+    margin-left: 45%;
+    padding: 2px;
+    color: black;
     display: block;
     text-align: center;
-    padding: 5px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: large;
 }
 #searchbox {
     width: 100%;
@@ -68,21 +71,22 @@ img {
 }
 /*Classes*/
 .quiz-container {
-    height: 100px;
+    height: 10vh;
     background-color: aquamarine;
     width: 80%;
     margin: 10px auto 10px;
     display: flex;
 }
 .quiz-preview {
-    background-color: dodgerblue;
+    /*background-color: dodgerblue;*/
+    object-fit: fill;
     margin: 5px;
-    width: 10%;
+    width: 100px;
+    height: 90%;
 }
 .quiz-text {
-    width: 70%;
+    width: 85vw;
     margin: 5px;
-    margin-left: 15%;
     background-color: chocolate;
 }
 .footer {
